@@ -15,7 +15,7 @@ namespace _Project.StatSystem.Common
 
     public interface IStatObserver
     {
-        public void OnNotify(StatType type, int  groupId,int currentValue, int maxValue);
+        public void OnNotify(StatType type, int  groupId,float currentValue, float maxValue);
     }
 
     public abstract class Stat : SerializedScriptableObject
@@ -25,37 +25,37 @@ namespace _Project.StatSystem.Common
 
         [SerializeField] private int _groupId;
 
-        [SerializeField] private int _maxValue = 100;
+        [SerializeField] private float _maxValue = 100;
         
-        [ReadOnly, SerializeField] private int _currentValue = 100;
-        [ReadOnly, SerializeField] private int _statChangedAmount;
+        [ReadOnly, SerializeField] private float _currentValue = 100;
+        [ReadOnly, SerializeField] private float _statChangedAmount;
 
         private List<IStatObserver> _observers = new();
 
         public StatType Type => _type;
         public int GroupId => _groupId;
 
-        public int CurrentValue
+        public float CurrentValue
         {
             get => _currentValue;
             protected set => _currentValue = value;
         }
 
-        public int MaxValue
+        public float MaxValue
         {
             get => _maxValue;
             protected set => _maxValue = value;
         }
 
-        public int ChangedAmount => _statChangedAmount;
+        public float ChangedAmount => _statChangedAmount;
 
-        public virtual int Modify
+        public virtual float Modify
         {
             get => _currentValue;
             set
             {
-                int previousValue = _currentValue;
-                int newValue = Mathf.Clamp(value, 0, _maxValue);
+                float previousValue = _currentValue;
+                float newValue = Mathf.Clamp(value, 0, _maxValue);
 
                 if (newValue != _currentValue)
                 {

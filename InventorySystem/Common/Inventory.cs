@@ -40,6 +40,7 @@ namespace _Project.InventorySystem.Common
 
         public bool IsFull { get; private set; }
         public bool HasItem(int id) => _items.Any(r => r.Data.Id == id);
+        
 
         public static event Action OnInventoryCapacityOut;
         public static event Action<int> OnChangeInventoryWeight;

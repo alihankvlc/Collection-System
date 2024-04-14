@@ -15,7 +15,7 @@ namespace _Project.StatSystem.Common
     {
         [Inject] private IStatDatabaseHandler _statDatabaseHandler;
 
-        public delegate void NotifyStatDelegate(StatType type, int groupId, int currentValue, int maxValue);
+        public delegate void NotifyStatDelegate(StatType type, int groupId, float currentValue, float maxValue);
 
         public static event NotifyStatDelegate OnNotiftStat;
 
@@ -24,7 +24,7 @@ namespace _Project.StatSystem.Common
             _statDatabaseHandler.Init(this);
         }
 
-        public void OnNotify(StatType type, int groupId, int currentValue, int maxValue)
+        public void OnNotify(StatType type, int groupId, float currentValue, float maxValue)
         {
             OnNotiftStat?.Invoke(type, groupId, currentValue, maxValue);
         }
