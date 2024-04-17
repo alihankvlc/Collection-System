@@ -16,7 +16,7 @@ namespace _Project.InventorySystem.Common
 
     public interface IInventoryProvider
     {
-        public void AddItem(Item item, InventorySlot slot);
+        public void AddItem(Item item, Slot slot);
         public void RemoveItem(int itemId);
         public void MoveToSlotInItem(int itemId, int previousSlot, int newSlotIndex, int slotInItemCount);
     }
@@ -40,12 +40,12 @@ namespace _Project.InventorySystem.Common
 
         public bool IsFull { get; private set; }
         public bool HasItem(int id) => _items.Any(r => r.Data.Id == id);
-        
+
 
         public static event Action OnInventoryCapacityOut;
         public static event Action<int> OnChangeInventoryWeight;
 
-        public void AddItem(Item item, InventorySlot slot)
+        public void AddItem(Item item, Slot slot)
         {
             if (_currentWeight >= _capacity) OnInventoryCapacityOut?.Invoke();
 

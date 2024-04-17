@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using _Project.InventorySystem.Common;
 using _Project.Player.InputSystem;
 using _Project.StatSystem.Common;
 using Sirenix.OdinInspector;
@@ -102,6 +103,13 @@ namespace _Project.Player.Common.ThirdPerson.Controller
 
         private void Update()
         {
+            if (InventoryManager.Instance.IsOpen)
+            {
+                _targetSpeed = 0.0f;
+                _animator.SetFloat(_speedHashId, _targetSpeed);
+                return;
+            }
+
             Movement();
             GroundedCheck();
 
@@ -110,11 +118,25 @@ namespace _Project.Player.Common.ThirdPerson.Controller
 
         private void FixedUpdate()
         {
+            if (InventoryManager.Instance.IsOpen)
+            {
+                _targetSpeed = 0.0f;
+                _animator.SetFloat(_speedHashId, _targetSpeed);
+                return;
+            }
+
             PlayerRigLayerController();
         }
 
         private void LateUpdate()
         {
+            if (InventoryManager.Instance.IsOpen)
+            {
+                _targetSpeed = 0.0f;
+                _animator.SetFloat(_speedHashId, _targetSpeed);
+                return;
+            }
+
             CameraRotation();
         }
 

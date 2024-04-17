@@ -19,7 +19,7 @@ namespace _Project.InventorySystem.Common
         public GameObject ItemDisplay { get; }
     }
 
-    public class InventoryManager : MonoBehaviour, IInventoryHandler, ISlotVisualProvider
+    public class InventoryManager : Singleton<InventoryManager>, IInventoryHandler, ISlotVisualProvider
     {
         [Header("Inventory Window"), Space] [SerializeField]
         private GameObject _inventoryWindow;
@@ -27,37 +27,39 @@ namespace _Project.InventorySystem.Common
         [Header("Inventory Toggle Settings")] [SerializeField]
         private KeyCode _toggleInventoryKey;
 
-        [Header("Inventory Slot Settings")] [SerializeField, InlineEditor]
-        private List<InventorySlot> _slots = new();
+        [Header("Slot Settings")] [SerializeField, InlineEditor]
+        private List<Slot> _slots = new();
 
         [SerializeField] private GameObject _slotInItemDisplay;
 
         [Inject] private IInventoryCheckable _inventoryCheckable;
         [Inject] private IInventoryProvider _inventoryProvider;
 
-        private bool _isShow;
+        public bool IsOpen { get; private set; }
 
         public GameObject ItemDisplay
         {
             get => _slotInItemDisplay;
         }
 
-        public bool InventoryIsOpen
-        {
-            get => _isShow;
-            private set => _isShow = value;
-        }
-
         private void Update()
         {
             ToggleInventoryVisibility();
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                AddItemToInventory(2);
+            }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                AddItemToInventory(1);
+            }
         }
 
 
         public void AddItemToInventory(int itemId)
         {
             Item item = ItemDatabase.Instance.GetItemInDatabase(id: itemId);
-            InventorySlot emptySlot = _slots.FirstOrDefault(r =>
+            Slot emptySlot = _slots.FirstOrDefault(r =>
                 r.Status == SlotStatus.Empty);
 
             if (emptySlot != null)
@@ -73,8 +75,8 @@ namespace _Project.InventorySystem.Common
         {
             if (Input.GetKeyDown(_toggleInventoryKey))
             {
-                _isShow = !_isShow;
-                _inventoryWindow.SetActive(_isShow);
+                IsOpen = !IsOpen;
+                _inventoryWindow.SetActive(IsOpen);
             }
         }
     }

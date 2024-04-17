@@ -1,8 +1,10 @@
 using System;
 using _Project.InventorySystem.Common;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _Project.ItemSystem.Common.Display
@@ -11,8 +13,8 @@ namespace _Project.ItemSystem.Common.Display
         IPointerExitHandler
     {
         [SerializeField] private Image _itemIcon;
-        [HideInInspector] public Transform ParentAfterDrag;
-        [HideInInspector] public InventorySlot ParentAfterSlot;
+        [ReadOnly] public Transform ParentAfterDrag;
+        [ReadOnly] public Slot ParentAfterSlot;
         private CanvasGroup _canvasGroup;
 
         private const float _transparencyValue = 0.25f;
@@ -26,7 +28,7 @@ namespace _Project.ItemSystem.Common.Display
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            ParentAfterSlot = GetComponentInParent<InventorySlot>();
+            ParentAfterSlot = GetComponentInParent<Slot>();
             ParentAfterDrag = transform.parent;
             transform.SetParent(transform.root);
             transform.SetAsLastSibling();
