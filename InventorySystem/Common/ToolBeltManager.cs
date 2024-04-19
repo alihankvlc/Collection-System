@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using _Project.InventorySystem.ToolBelt;
+using _Project.InventorySystem.ToolBelt.Common;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;

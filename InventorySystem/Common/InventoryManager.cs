@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using _Project.Framework;
 using _Project.ItemSystem.Common;
 using _Project.ItemSystem.Common.Database;
 using Sirenix.OdinInspector;
@@ -21,9 +23,6 @@ namespace _Project.InventorySystem.Common
 
     public class InventoryManager : Singleton<InventoryManager>, IInventoryHandler, ISlotVisualProvider
     {
-        [Header("Inventory Window"), Space] [SerializeField]
-        private GameObject _inventoryWindow;
-
         [Header("Inventory Toggle Settings")] [SerializeField]
         private KeyCode _toggleInventoryKey;
 
@@ -36,6 +35,7 @@ namespace _Project.InventorySystem.Common
         [Inject] private IInventoryProvider _inventoryProvider;
 
         public bool IsOpen { get; private set; }
+        public static event Action<bool> OnInventoryEnable;
 
         public GameObject ItemDisplay
         {
@@ -59,11 +59,10 @@ namespace _Project.InventorySystem.Common
         public void AddItemToInventory(int itemId)
         {
             Item item = ItemDatabase.Instance.GetItemInDatabase(id: itemId);
-            Slot emptySlot = _slots.FirstOrDefault(r =>
-                r.Status == SlotStatus.Empty);
+            Slot slot = _slots.FirstOrDefault(r => r.Status == SlotStatus.Empty);
 
-            if (emptySlot != null)
-                _inventoryProvider.AddItem(item, emptySlot);
+            if (slot != null)
+                _inventoryProvider.AddItem(item, slot);
         }
 
         public void RemoveFromItem(int id)
@@ -71,12 +70,13 @@ namespace _Project.InventorySystem.Common
             _inventoryProvider.RemoveItem(id);
         }
 
+
         private void ToggleInventoryVisibility()
         {
             if (Input.GetKeyDown(_toggleInventoryKey))
             {
                 IsOpen = !IsOpen;
-                _inventoryWindow.SetActive(IsOpen);
+                OnInventoryEnable?.Invoke(IsOpen);
             }
         }
     }

@@ -6,8 +6,11 @@ namespace _Project.ItemSystem.Common
     {
         None,
         Weapon,
-        Consumable,
-        Resources
+        Medkit,
+        Food,
+        Drink,
+        Resources,
+        Ammo
     }
 
     public abstract class ItemData : ScriptableObject

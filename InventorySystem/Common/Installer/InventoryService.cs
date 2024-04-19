@@ -1,4 +1,4 @@
-using _Project.InventorySystem.Tab.Common;
+using _Project.InventorySystem.ToolBelt.Common;
 using _Project.ItemSystem.Common;
 using UnityEngine;
 using Zenject;
@@ -10,6 +10,8 @@ namespace _Project.InventorySystem.Common.Installer
         [SerializeField] private Inventory _inventory;
         [SerializeField] private InventoryManager _manager;
         [SerializeField] private ToolBeltSlotNavigator _navigator;
+        [SerializeField] private SlotInItemDetailWindow _itemDetailWindow;
+
         public override void InstallBindings()
         {
             Container.Bind<IInventoryProvider>().FromInstance(_inventory).AsSingle();

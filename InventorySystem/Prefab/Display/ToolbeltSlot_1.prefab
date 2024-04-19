@@ -256,8 +256,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slotType: 0
-  _slotIndex: 0
   _status: 0
+  _slotIndex: 1
   _slotInItem: {fileID: 0}
   _slotInItemCount: 0
   _slotContentPlaceHolder: {fileID: 8059067105441536727}
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.23584908, g: 0.23584908, b: 0.16576186, a: 0.85882354}
+  m_Color: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 0.85882354}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

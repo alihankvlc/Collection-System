@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8edf3d5c94d49fe96081982db504a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inventoryWindow: {fileID: 0}
+  _toggleInventoryKey: 105
   _slots:
   - {fileID: 0}
   - {fileID: 0}
@@ -75,3 +77,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _slotInItemDisplay: {fileID: 6346794136181721512, guid: 8bbc7ef0cf8d7f2498227772f87133d4,
+    type: 3}

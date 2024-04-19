@@ -1,11 +1,8 @@
-using _Project.InventorySystem.Common;
-using _Project.InventorySystem.ToolBelt;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace _Project.InventorySystem
+namespace _Project.InventorySystem.ToolBelt.Common
 {
     public interface INavigate
     {

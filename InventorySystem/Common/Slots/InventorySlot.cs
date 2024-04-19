@@ -15,6 +15,7 @@ namespace _Project.InventorySystem.Common
         {
             _slotType = SlotType.Inventory;
         }
+
         public override void AddItemToSlot(Item item, bool isCreated = true)
         {
             base.AddItemToSlot(item, isCreated);

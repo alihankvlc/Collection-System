@@ -35,6 +35,9 @@ namespace _Project.InventorySystem.Common
         [SerializeField, ReadOnly] protected int _slotInItemCount;
 
 
+        [Inject] protected ISlotVisualProvider _visualProvider;
+        [Inject] protected IInventoryProvider _inventoryProvider;
+
         public virtual SlotType SlotType
         {
             get => _slotType;
@@ -64,9 +67,6 @@ namespace _Project.InventorySystem.Common
             get => _slotInItemCount;
             protected set => _slotInItemCount = value;
         }
-
-        [Inject] protected ISlotVisualProvider _visualProvider;
-        [Inject] protected IInventoryProvider _inventoryProvider;
 
         public virtual void AddItemToSlot(Item item, bool isCreated = true)
         {
